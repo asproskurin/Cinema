@@ -3,10 +3,10 @@ using Cinema.Models.Response;
 
 namespace Cinema.Interfaces
 {
-    public interface ISessionCervice
+    public interface ISessionService
     {
         public Task<IEnumerable<FilmsGetResponse>> GetAllSessionsAsync();
-        public Task<bool> CreateSessionAsync(FilmUploadRequest film);
+        public Task<bool> CreateSessionAsync(SessionUploadRequest session);
         public Task<bool> DeleteSessionAsync(int filmId);
     }
 }

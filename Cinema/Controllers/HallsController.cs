@@ -7,21 +7,21 @@ namespace Cinema.Controllers
 {
     [ApiController]
     [Route("Halls")]
-    public class HallsController(IHallService HallService) : ControllerBase
+    public class HallsController(IHallService hallService) : ControllerBase
     {
-        private readonly IHallService _HallsService = HallService;
+        private readonly IHallService _hallsService = hallService;
 
-        [HttpGet("Halls")]
-        public async Task<ActionResult<IEnumerable<HallsGetResponce>>> GetAllFilms()
+        [HttpGet("halls")]
+        public async Task<ActionResult<IEnumerable<HallsGetResponce>>> GetAllHalls()
         {
-            var response = await _HallsService.GetAllHallsAsync();
+            var response = await _hallsService.GetAllHallsAsync();
             return Ok(response);
         }
 
-        [HttpPost("Halls")]
-        public async Task<IActionResult> CreateFilm(HallUploadRequest film)
+        [HttpPost("hall")]
+        public async Task<IActionResult> CreateHall(HallUploadRequest hall)
         {
-            var response = await _HallsService.CreateHallAsync(film);
+            var response = await _hallsService.CreateHallAsync(hall);
             return Ok(response);
         }
     }

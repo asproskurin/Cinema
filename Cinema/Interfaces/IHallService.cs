@@ -6,6 +6,6 @@ namespace Cinema.Interfaces
     public interface IHallService
     {
         public Task<IEnumerable<HallsGetResponce>> GetAllHallsAsync();
-        public Task<bool> CreateHallAsync(HallUploadRequest film);
+        public Task<bool> CreateHallAsync(HallUploadRequest hall);
     }
 }

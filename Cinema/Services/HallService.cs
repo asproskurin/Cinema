@@ -12,10 +12,10 @@ namespace Cinema.Services
         private readonly IMapper _mapper = mapper;
         private readonly ICinemaDbContext _dbContext = dbContext;
 
-        public async Task<bool> CreateHallAsync(HallUploadRequest film)
+        public async Task<bool> CreateHallAsync(HallUploadRequest hall)
         {
-            var Hall = _mapper.Map<HallDto>(film);
-            await _dbContext.Halls.AddAsync(Hall);
+            var hallDto = _mapper.Map<HallDto>(hall);
+            await _dbContext.Halls.AddAsync(hallDto);
             await _dbContext.SaveChangesAsync();
             return true;
         }
