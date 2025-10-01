@@ -19,6 +19,7 @@ builder.Services.AddDbContext<CinemaDbContext>(options => options.UseNpgsql(buil
 builder.Services.AddScoped<ICinemaDbContext, CinemaDbContext>();
 builder.Services.AddScoped<IFilmService, FilmService>();
 builder.Services.AddScoped<IHallService, HallService>();
+builder.Services.AddScoped<ISessionService, SessionService>();
 
 builder.Services.AddControllers();
 
