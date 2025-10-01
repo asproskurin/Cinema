@@ -20,6 +20,11 @@ namespace Cinema
             CreateMap<HallUploadRequest, HallDto>();
             CreateMap<HallDto, HallsGetResponce>();
             #endregion
+
+            #region Session mapping
+            CreateMap<SessionUploadRequest, SessionDto>();
+
+            #endregion
         }
     }
 }
