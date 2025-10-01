@@ -22,7 +22,9 @@ namespace Cinema
             #endregion
 
             #region Session mapping
-            CreateMap<SessionUploadRequest, SessionDto>();
+            CreateMap<SessionUploadRequest, SessionDto>()
+                .ForMember(dest => dest.FilmId, opt => opt.Ignore())
+                .ForMember(dest => dest.HallId, opt => opt.Ignore());
 
             #endregion
         }

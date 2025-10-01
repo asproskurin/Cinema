@@ -15,11 +15,11 @@ namespace Cinema.Services
         public async Task<bool> CreateSessionAsync(SessionUploadRequest session)
         {
             var film = await _dbContext.Films
-                .FirstOrDefaultAsync(f => f.Name == session.Film && f.IsActive);
+                .FirstOrDefaultAsync(f => f.Name == session.FilmName && f.IsActive);
             ArgumentNullException.ThrowIfNull(film);
 
             var hall = await _dbContext.Halls
-                .FirstOrDefaultAsync(h => h.Name == session.Hall);
+                .FirstOrDefaultAsync(h => h.Name == session.HallName);
             ArgumentNullException.ThrowIfNull(hall);
 
             var sessionDto = _mapper.Map<SessionDto>(session);
