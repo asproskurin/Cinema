@@ -12,16 +12,23 @@ namespace Cinema.Controllers
         private readonly ISessionService _sessionService = sessionService;
 
         [HttpGet("sessions")]
-        public async Task<ActionResult<IEnumerable<HallsGetResponce>>> GetAllHalls()
+        public async Task<ActionResult<IEnumerable<SessionsGetResponce>>> GetAllSessions()
         {
             var response = await _sessionService.GetAllSessionsAsync();
             return Ok(response);
         }
 
-        [HttpPost("session")]
-        public async Task<IActionResult> CreateHall(SessionUploadRequest session)
+        [HttpPost("new-session")]
+        public async Task<IActionResult> CreateSession(SessionUploadRequest session)
         {
             var response = await _sessionService.CreateSessionAsync(session);
+            return Ok(response);
+        }
+
+        [HttpPost("remove-session")]
+        public async Task<IActionResult> RemoveSesion([FromQuery]int sessionId)
+        {
+            var response = await _sessionService.DeleteSessionAsync(sessionId);
             return Ok(response);
         }
     }

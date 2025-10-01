@@ -25,7 +25,7 @@ namespace Cinema
             CreateMap<SessionUploadRequest, SessionDto>()
                 .ForMember(dest => dest.FilmId, opt => opt.Ignore())
                 .ForMember(dest => dest.HallId, opt => opt.Ignore());
-
+            CreateMap<SessionDto, SessionsGetResponce>();
             #endregion
         }
     }

@@ -1,5 +1,6 @@
 using Cinema;
 using Cinema.Interfaces;
+using Cinema.Models;
 using Cinema.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<CinemaDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.Configure<HallSettings>(builder.Configuration.GetSection(nameof(HallSettings)));
 
 builder.Services.AddScoped<ICinemaDbContext, CinemaDbContext>();
 builder.Services.AddScoped<IFilmService, FilmService>();

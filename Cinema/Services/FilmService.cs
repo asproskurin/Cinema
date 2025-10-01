@@ -31,6 +31,10 @@ namespace Cinema.Services
             var film = _dbContext.Films.FirstOrDefault(src => src.Id == filmId);
             ArgumentNullException.ThrowIfNull(film);
             film.IsActive = false;
+            var sessions = _dbContext.Sessions
+                .Where(src => src.FilmId == filmId)
+                .ExecuteUpdateAsync(src => src
+                    .SetProperty(s => s.Status, false));
             await _dbContext.SaveChangesAsync();
             return true;
         }

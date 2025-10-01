@@ -80,18 +80,9 @@ namespace Cinema
                 entity.Property(cs => cs.Status)
                     .IsRequired();
 
-
-                entity.HasOne(cs => cs.Hall)
-                    .WithMany(ch => ch.Sessions)
-                    .HasForeignKey(cs => cs.HallId)
-                    .OnDelete(DeleteBehavior.Restrict);
-
                 entity.HasIndex(cs => new { cs.HallId, cs.StartTime })
                         .IsUnique();
             });
-
-            modelBuilder.Entity<FilmDto>().HasQueryFilter(f => f.IsActive);
-            modelBuilder.Entity<SessionDto>().HasQueryFilter(cs => cs.Status);
         }
     }
 }

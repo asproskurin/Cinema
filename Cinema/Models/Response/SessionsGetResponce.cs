@@ -1,9 +1,13 @@
-﻿namespace Cinema.Models.Request
+﻿using Cinema.Models.Dto;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Cinema.Models.Response
 {
-    public class SessionUploadRequest
+    public class SessionsGetResponce
     {
-        public required string FilmName { get; set; }
-        public required string HallName { get; set; }
+        public int Id { get; set; }
+        public int FilmId { get; set; }
+        public int HallId { get; set; }
         public required TimeOnly StartTime { get; set; }
         public required DateOnly StartDate { get; set; }
         public required int Duration { get; set; }

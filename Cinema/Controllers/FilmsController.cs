@@ -18,14 +18,14 @@ namespace Cinema.Controllers
             return Ok(response);
         }
 
-        [HttpPost("film")]
+        [HttpPost("new-film")]
         public async Task<IActionResult> CreateFilm(FilmUploadRequest film)
         {
             var response = await _filmService.CreateFilmAsync(film);
             return Ok(response);
         }
 
-        [HttpPatch("film")]
+        [HttpPost("remove-film")]
         public async Task<IActionResult> DeleteFilm([FromQuery]int filmId)
         {
             var response = await _filmService.DeleteFilmAsync(filmId);

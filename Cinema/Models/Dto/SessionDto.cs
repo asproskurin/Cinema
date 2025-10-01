@@ -13,7 +13,9 @@ namespace Cinema.Models.Dto
 
         [ForeignKey("HallId")]
         public required HallDto Hall { get; set; }
-        public required DateTime StartTime { get; set; }
+        public required TimeOnly StartTime { get; set; }
+        public required DateOnly StartDate { get; set; }
+        public required int Duration { get; set; }
         public required int Cost { get; set; }
         public required bool Status { get; set; }
     }

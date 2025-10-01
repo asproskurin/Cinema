@@ -30,14 +30,19 @@ namespace Cinema.Services
             return true;
         }
 
-        public Task<bool> DeleteSessionAsync(int filmId)
+        public async Task<bool> DeleteSessionAsync(int sessionId)
         {
-            throw new NotImplementedException();
+            var session = _dbContext.Sessions.FirstOrDefault(src => src.Id == sessionId);
+            ArgumentNullException.ThrowIfNull(session);
+            session.Status = false;
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
-        public Task<IEnumerable<FilmsGetResponse>> GetAllSessionsAsync()
+        public async Task<IEnumerable<SessionsGetResponce>> GetAllSessionsAsync()
         {
-            throw new NotImplementedException();
+            var response = await _dbContext.Sessions.Select(session => _mapper.Map<SessionsGetResponce>(session)).ToListAsync();
+            return response;
         }
     }
 }
