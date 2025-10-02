@@ -95,9 +95,6 @@ namespace Cinema.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Cost")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Duration")
                         .HasColumnType("integer");
 
@@ -105,6 +102,9 @@ namespace Cinema.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int>("HallId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Price")
                         .HasColumnType("integer");
 
                     b.Property<DateOnly>("StartDate")
@@ -137,7 +137,7 @@ namespace Cinema.Migrations
                     b.HasOne("Cinema.Models.Dto.HallDto", "Hall")
                         .WithMany("Sessions")
                         .HasForeignKey("HallId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Film");

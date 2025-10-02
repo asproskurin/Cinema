@@ -74,7 +74,7 @@ namespace Cinema
                 entity.Property(cs => cs.StartTime)
                     .IsRequired();
 
-                entity.Property(cs => cs.Cost)
+                entity.Property(cs => cs.Price)
                     .IsRequired();
 
                 entity.Property(cs => cs.Status)

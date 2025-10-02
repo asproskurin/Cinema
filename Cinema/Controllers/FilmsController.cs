@@ -11,25 +11,39 @@ namespace Cinema.Controllers
     {
         private readonly IFilmService _filmService = filmService;
 
-        [HttpGet("films")]
+        [HttpGet("get")]
         public async Task<ActionResult<IEnumerable<FilmsGetResponse>>> GetAllFilms()
         {
             var response = await _filmService.GetAllFilmsAsync();
             return Ok(response);
         }
 
-        [HttpPost("new-film")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateFilm(FilmUploadRequest film)
         {
             var response = await _filmService.CreateFilmAsync(film);
             return Ok(response);
         }
 
-        [HttpPost("remove-film")]
+        [HttpPost("remove")]
         public async Task<IActionResult> DeleteFilm([FromQuery]int filmId)
         {
             var response = await _filmService.DeleteFilmAsync(filmId);
             return Ok(response);
+        }
+
+        [HttpPost("search")]
+        public async Task<ActionResult<List<FilmSearchResult>>> SearchFilms([FromBody] FilmSearchRequest request)
+        {
+            try
+            {
+                var result = await _filmService.SearchFilmsAsync(request);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Ошибка при поиске фильмов: {ex.Message}");
+            }
         }
     }
 }

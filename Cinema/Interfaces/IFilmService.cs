@@ -9,5 +9,6 @@ namespace Cinema.Interfaces
         public Task<IEnumerable<FilmsGetResponse>> GetAllFilmsAsync();
         public Task<bool> CreateFilmAsync(FilmUploadRequest film);
         public Task<bool> DeleteFilmAsync(int filmId);
+        public Task<List<FilmSearchResult>> SearchFilmsAsync(FilmSearchRequest request);
     }
 }

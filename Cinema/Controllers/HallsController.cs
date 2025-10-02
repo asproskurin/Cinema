@@ -11,14 +11,14 @@ namespace Cinema.Controllers
     {
         private readonly IHallService _hallsService = hallService;
 
-        [HttpGet("halls")]
+        [HttpGet("get")]
         public async Task<ActionResult<IEnumerable<HallsGetResponce>>> GetAllHalls()
         {
             var response = await _hallsService.GetAllHallsAsync();
             return Ok(response);
         }
 
-        [HttpPost("hall")]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateHall(HallUploadRequest hall)
         {
             var response = await _hallsService.CreateHallAsync(hall);

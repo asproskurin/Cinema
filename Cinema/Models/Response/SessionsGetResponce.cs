@@ -11,7 +11,7 @@ namespace Cinema.Models.Response
         public required TimeOnly StartTime { get; set; }
         public required DateOnly StartDate { get; set; }
         public required int Duration { get; set; }
-        public required int Cost { get; set; }
+        public required int Price { get; set; }
         public required bool Status { get; set; }
     }
 }
