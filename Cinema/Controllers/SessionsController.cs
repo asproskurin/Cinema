@@ -1,7 +1,9 @@
 ﻿using Cinema.Interfaces;
+using Cinema.Models.Dto;
 using Cinema.Models.Request;
 using Cinema.Models.Response;
 using Microsoft.AspNetCore.Mvc;
+using OpenQA.Selenium;
 
 namespace Cinema.Controllers
 {
@@ -12,7 +14,7 @@ namespace Cinema.Controllers
         private readonly ISessionService _sessionService = sessionService;
 
         [HttpGet("get")]
-        public async Task<ActionResult<IEnumerable<SessionsGetResponce>>> GetAllSessions()
+        public async Task<ActionResult<IEnumerable<SessionsGetResponse>>> GetAllSessions()
         {
             var response = await _sessionService.GetAllSessionsAsync();
             return Ok(response);
@@ -30,6 +32,39 @@ namespace Cinema.Controllers
         {
             var response = await _sessionService.DeleteSessionAsync(sessionId);
             return Ok(response);
+        }
+
+        [HttpGet("{filmId}/sessions")]
+        public async Task<ActionResult<FilmSessionsResponse>> GetFilmSessions(FilmSessionsRequest request)
+        {
+            try
+            {
+                var result = await _sessionService.GetFilmSessionsAsync(request);
+                return Ok(result);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "Внутренняя ошибка сервера", Details = ex.Message });
+            }
+        }
+
+        [HttpGet("active")]
+        public async Task<ActionResult<ActiveSessionsResponse>> GetActiveSessions(ActiveSessionsRequest request)
+        {
+
+            try
+            {
+                var result = await _sessionService.GetActiveSessionsAsync(request);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "Внутренняя ошибка сервера", Details = ex.Message });
+            }
         }
     }
 }

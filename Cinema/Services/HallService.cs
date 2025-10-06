@@ -20,9 +20,9 @@ namespace Cinema.Services
             return true;
         }
 
-        public async Task<IEnumerable<HallsGetResponce>> GetAllHallsAsync()
+        public async Task<IEnumerable<HallsGetResponse>> GetAllHallsAsync()
         {
-            var response = await _dbContext.Halls.Select(film => _mapper.Map<HallsGetResponce>(film)).ToListAsync();
+            var response = await _dbContext.Halls.Select(film => _mapper.Map<HallsGetResponse>(film)).ToListAsync();
             return response;
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Cinema.Models.Response
 {
-    public class HallsGetResponce
+    public class HallsGetResponse
     {
         public int Id { get; set; }
         public string? Name { get; set; }

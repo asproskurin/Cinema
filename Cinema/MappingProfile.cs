@@ -18,14 +18,15 @@ namespace Cinema
 
             #region Hall mapping
             CreateMap<HallUploadRequest, HallDto>();
-            CreateMap<HallDto, HallsGetResponce>();
+            CreateMap<HallDto, HallsGetResponse>();
             #endregion
-
+            
             #region Session mapping
             CreateMap<SessionUploadRequest, SessionDto>()
                 .ForMember(dest => dest.FilmId, opt => opt.Ignore())
                 .ForMember(dest => dest.HallId, opt => opt.Ignore());
-            CreateMap<SessionDto, SessionsGetResponce>();
+            CreateMap<SessionDto, SessionsGetResponse>();
+            CreateMap<FilmDto, FilmSessionsResponse>();
             #endregion
         }
     }

@@ -1,12 +1,27 @@
-﻿namespace Cinema.Models.Request
+﻿using FluentValidation;
+
+namespace Cinema.Models.Request
 {
     public class SessionUploadRequest
     {
-        public required string FilmName { get; set; }
-        public required string HallName { get; set; }
-        public required TimeOnly StartTime { get; set; }
-        public required DateOnly StartDate { get; set; }
-        public required int Price { get; set; }
-        public required bool Status { get; set; }
+        public string FilmName { get; set; }
+        public string HallName { get; set; }
+        public TimeOnly StartTime { get; set; }
+        public DateOnly StartDate { get; set; }
+        public int Price { get; set; }
+        public bool Status { get; set; }
+    }
+
+    public class SessionUploadRequestValidator : AbstractValidator<SessionUploadRequest>
+    {
+        public SessionUploadRequestValidator()
+        {
+            RuleFor(i => i.FilmName).NotEmpty();
+            RuleFor(i => i.HallName).NotEmpty();
+            RuleFor(i => i.StartTime).NotEmpty();
+            RuleFor(i => i.StartDate).NotEmpty();
+            RuleFor(i => i.Price).NotEmpty();
+            RuleFor(i => i.Status).NotEmpty();
+        }
     }
 }

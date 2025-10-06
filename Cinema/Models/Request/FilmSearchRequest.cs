@@ -1,4 +1,5 @@
 ﻿using Cinema.Models.Dto;
+using FluentValidation;
 
 namespace Cinema.Models.Request
 {
@@ -16,5 +17,13 @@ namespace Cinema.Models.Request
         public decimal? MaxPrice { get; set; }
         public TimeOnly? FromTime { get; set; }
         public bool? IsActive { get; set; } = true;
+    }
+
+    public class FilmSearchRequestValidator : AbstractValidator<FilmSearchRequest>
+    {
+        public FilmSearchRequestValidator()
+        {
+            RuleFor(i => i.Name).NotEmpty();
+        }
     }
 }

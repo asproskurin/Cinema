@@ -33,7 +33,7 @@ namespace Cinema.Controllers
         }
 
         [HttpPost("search")]
-        public async Task<ActionResult<List<FilmSearchResult>>> SearchFilms([FromBody] FilmSearchRequest request)
+        public async Task<ActionResult<List<FilmSearchResult>>> SearchFilms(FilmSearchRequest request)
         {
             try
             {
